@@ -2,6 +2,7 @@ from LilithPyBezier.LilithPyBezier import LPBezier
 from matplotlib import pyplot as plt
 import json
 import random
+import os
 
 
 class LPTrace(object):
@@ -95,7 +96,13 @@ class LPTrace(object):
 
             total_bezier_point['xs'].extend(reverse_bezier_xs)
             total_bezier_point['ys'].extend(reverse_bezier_ys)
-            print("Creating %d trace\n", x)
+            print("Creating ", x, " trace\n")
+
+            if not os.path.exists("metadata"):
+                os.makedirs("metadata")
+            if not os.path.exists("generate"):
+                os.makedirs("generate")
+
             self._save_trace_to_json(total_bezier_point, focus_region, "metadata/" + str(x) + ".json")
             self._save_to_image(total_bezier_point, "generate/" + str(x) + ".png")
 
@@ -124,7 +131,7 @@ class LPTrace(object):
         canvas.set_axis_off()
         canvas.set_position([0, 0, 1, 1])
 
-        canvas.plot(bezier_points['xs'], bezier_points['ys'])
+        canvas.plot(bezier_points['xs'], bezier_points['ys'], linewidth=3)
 
         with open(file_path, mode='wb') as image_file:
             fig.savefig(image_file, format='png')
