@@ -1,12 +1,13 @@
 from LilithPyBezier.LilithPyBezier import LPBezier
 from matplotlib import pyplot as plt
+from model.trace_data import TraceDatabase
 import json
 import random
 import os
 
 
 class LPTrace(object):
-    def __init__(self, config_path="generation_config.json"):
+    def __init__(self, db_password, start_index, config_path="generation_config.json",):
         self.config_path = config_path
 
         self.shape_name = None
@@ -17,7 +18,10 @@ class LPTrace(object):
 
         self.width = None
         self.height = None
+        self.start_index = start_index
         self.number = None
+
+        self.tracedb = TraceDatabase(db_password)
 
         self._load_config()
 
@@ -96,15 +100,17 @@ class LPTrace(object):
 
             total_bezier_point['xs'].extend(reverse_bezier_xs)
             total_bezier_point['ys'].extend(reverse_bezier_ys)
-            print("Creating ", x, " trace\n")
+            print("Creating ", x + self.start_index, " trace\n")
 
             if not os.path.exists("metadata"):
                 os.makedirs("metadata")
             if not os.path.exists("generate"):
                 os.makedirs("generate")
 
-            self._save_trace_to_json(total_bezier_point, focus_region, "metadata/" + str(x) + ".json")
-            self._save_to_image(total_bezier_point, "generate/" + str(x) + ".png")
+            self._save_trace_to_json(total_bezier_point, focus_region, "metadata/" + str(self.start_index + x) + ".json")
+            self._save_to_image(total_bezier_point, "generate/" + str(self.start_index + x) + ".png")
+            #self.tracedb.save_trace_to_db(bezier_point=total_bezier_point, index=self.start_index + x)
+
 
     def _save_trace_to_json(self, bezier_point, focus_region, file_path):
         time = list()
@@ -135,5 +141,6 @@ class LPTrace(object):
 
         with open(file_path, mode='wb') as image_file:
             fig.savefig(image_file, format='png')
+
 
 
