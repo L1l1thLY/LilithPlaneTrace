@@ -5,10 +5,10 @@ CREATE TABLE trace_data(
     model VARCHAR(10) NOT NULL,
     country VARCHAR(40) NOT NULL,
     data_time DATETIME NOT NULL,
-    lat FLOAT NOT NULL,
-    lon FLOAT NOT NULL,
-    speed FLOAT NOT NULL,
-    altitude FLOAT NOT NULL,
+    lat DOUBLE NOT NULL,
+    lon DOUBLE NOT NULL,
+    speed DOUBLE NOT NULL,
+    altitude DOUBLE NOT NULL,
     PRIMARY KEY(id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

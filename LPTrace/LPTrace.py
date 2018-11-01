@@ -109,7 +109,7 @@ class LPTrace(object):
 
             self._save_trace_to_json(total_bezier_point, focus_region, "metadata/" + str(self.start_index + x) + ".json")
             self._save_to_image(total_bezier_point, "generate/" + str(self.start_index + x) + ".png")
-            #self.tracedb.save_trace_to_db(bezier_point=total_bezier_point, index=self.start_index + x)
+            self.tracedb.save_trace_to_db(bezier_point=total_bezier_point, index=self.start_index + x)
 
 
     def _save_trace_to_json(self, bezier_point, focus_region, file_path):
