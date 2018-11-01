@@ -15,7 +15,7 @@ if __name__ == '__main__':
     lpt = LPTrace(db_password=password, start_index=0)
 
     # 生成数据存入数据库
-    # lpt.generate_trace()
+    #lpt.generate_trace()
 
     # 根据机型和区域得到一条飞机轨迹
     lpt.load_db_data_to_local("J-15", "China")

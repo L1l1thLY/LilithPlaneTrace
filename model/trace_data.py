@@ -25,7 +25,7 @@ class TraceDatabase(object):
 
             now_lat = min_lat + delta * y_point
             now_lon = min_lon + delta * x_point
-            sec_delta = datetime.timedelta(seconds=(1 * i))
+            sec_delta = datetime.timedelta(seconds=(1))
             dt = dt + sec_delta
 
             dt_str = dt.strftime("%Y-%m-%d %H:%M:%S")
@@ -61,8 +61,8 @@ class TraceDatabase(object):
                 lat = row[4]
                 lon = row[5]
                 print(lat)
-                bezier_point['xs'].append((lat - min_lat) / delta)
-                bezier_point['ys'].append((lon - min_lon) / delta)
+                bezier_point['ys'].append((lat - min_lat) / delta)
+                bezier_point['xs'].append((lon - min_lon) / delta)
         except Exception:
             print("select error")
 
