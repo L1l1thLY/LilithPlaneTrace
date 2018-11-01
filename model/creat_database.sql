@@ -13,4 +13,3 @@ CREATE TABLE trace_data(
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 GRANT ALL PRIVILEGES ON tracedb.* TO 'lilith'@'localhost';
-

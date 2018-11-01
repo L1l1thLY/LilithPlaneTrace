@@ -143,4 +143,7 @@ class LPTrace(object):
             fig.savefig(image_file, format='png')
 
 
+    def load_db_data_to_local(self, model, country):
+        data = self.tracedb.load_data(model, country)
 
+        self._save_to_image(data, "new.png")

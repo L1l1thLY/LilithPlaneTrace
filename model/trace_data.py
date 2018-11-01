@@ -41,5 +41,32 @@ class TraceDatabase(object):
                 print(Exception)
                 self.db.rollback()
 
+    def load_data(self, model, country):
+        cursor = self.db.cursor()
+
+        sql = "SELECT * FROM trace_data WHERE model='%s' AND country='%s'" % (model, country)
+
+        min_lat = 28.6424029677
+        min_lon = 121.4263952776
+        max_lon = 124.3707275391
+        delta = (max_lon - min_lon) / 600
+
+        bezier_point = dict(xs=list(), ys=list())
+
+        try:
+            cursor.execute(sql)
+            result = cursor.fetchall()
+            for row in result:
+
+                lat = row[4]
+                lon = row[5]
+                print(lat)
+                bezier_point['xs'].append((lat - min_lat) / delta)
+                bezier_point['ys'].append((lon - min_lon) / delta)
+        except Exception:
+            print("select error")
+
+        return bezier_point
+
     def __del__(self):
         self.db.close()
