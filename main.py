@@ -23,12 +23,14 @@ if __name__ == '__main__':
     #lpt.load_db_data_to_local("T-2", "USA")
 
     adj = LPAdjoint(10, 0.3)
+
     result = adj.is_adjoint(lpt.load_db_data("H-6", "China"), lpt.load_db_data("T-1", "USA"))
 
-    print("H-6 and T1 is", result)
+    if result is True:
+        print("H-6 go along with T-1.")
 
     result = adj.is_adjoint(lpt.load_db_data("T-1", "USA"), lpt.load_db_data("T-2", "USA"))
-
-    print("T-1 and T-2 is", result)
+    if result is True:
+        print("T-1 go along with T-2")
 
 
