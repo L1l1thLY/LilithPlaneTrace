@@ -8,8 +8,8 @@ class TraceDatabase(object):
     def save_trace_to_db(self, bezier_point, index):
         altitude = 999.0
         speed = 5000
-        type = ["J-15", "J-16", "J-31", "601", "J-20", "Q-5", "Q-6", "K-8", "H-5", "H-6"]
-        country = ["China", "China", "China", "China", "China", "China", "China", "China", "China", "China"]
+        type = ["J-15", "J-16", "J-31", "601", "J-20", "Q-5", "Q-6", "K-8", "H-5", "H-6", "T-1", "T-2", "T3"]
+        country = ["China", "China", "China", "China", "China", "China", "China", "China", "China", "China", "USA", "USA", "USA"]
         min_lat = 28.6424029677
         min_lon = 121.4263952776
         max_lon = 124.3707275391
@@ -60,7 +60,6 @@ class TraceDatabase(object):
 
                 lat = row[4]
                 lon = row[5]
-                print(lat)
                 bezier_point['ys'].append((lat - min_lat) / delta)
                 bezier_point['xs'].append((lon - min_lon) / delta)
         except Exception:
