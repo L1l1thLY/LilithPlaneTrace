@@ -64,10 +64,13 @@ def pump_sample_data():
 def test_LPAjoint(lpt, adj):
 
     result = adj.is_adjoint(lpt.load_db_data("H-6", "China"), lpt.load_db_data("T-1", "USA"))
+    lpt.load_db_data_to_local("H-6", "China")
+    lpt.load_db_data_to_local("T-1", "USA")
     if result is True:
         print("H-6 go along with T-1.")
 
     result = adj.is_adjoint(lpt.load_db_data("T-1", "USA"), lpt.load_db_data("T-2", "USA"))
+    lpt.load_db_data_to_local("T-2", "USA")
     if result is True:
         print("T-1 go along with T-2")
 

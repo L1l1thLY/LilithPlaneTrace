@@ -146,7 +146,7 @@ class LPTrace(object):
     def load_db_data_to_local(self, model, country):
         data = self.tracedb.load_data(model, country)
 
-        self._save_to_image(data, "new.png")
+        self._save_to_image(data, model + country + ".png")
 
     def load_db_data(self, model, country):
         data = self.tracedb.load_data(model, country)
