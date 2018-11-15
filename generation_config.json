@@ -1,6 +1,6 @@
 {
-  "width": 600,
-  "height": 600,
+  "shape_file": "shape/line_shape.json",
   "number": 1,
-  "shape_file": "shape/line_shape.json"
+  "height": 600,
+  "width": 600
 }

@@ -9,8 +9,8 @@ class LPAdjoint(object):
 
     def is_adjoint(self, bezier1, bezier2):
 
-        adjoint_point = 0
-        all_point = 0
+        adjoint_point = 0.0
+        all_point = 0.0
         for index, value in enumerate(bezier1['xs']):
             vector1 = np.array([value, bezier1['ys'][index]])
             vector1.reshape((2, 1))
@@ -19,8 +19,8 @@ class LPAdjoint(object):
             if np.linalg.norm(vector1 - vector2) < self.distance:
                 adjoint_point = adjoint_point + 1
             all_point = all_point + 1
-
-        if adjoint_point / all_point > self.ratio:
+        ratio = adjoint_point / all_point
+        if ratio > self.ratio:
             return True
         else:
             return False
